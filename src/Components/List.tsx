@@ -30,6 +30,8 @@ const StyledList = styled(List)`
   h2 {
     font-weight: 700;
     margin-bottom: 20px;
+    color: ${(props) => props.theme.colors.grey3};
+    font-size: 24px;
   }
 `;
 

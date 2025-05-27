@@ -43,30 +43,36 @@ const StyledAddTodo = styled(AddTodo)`
     position: relative;
   }
   input {
-    padding: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    padding: 20px;
+    margin: 10px;
     background-color: ${(props) => props.theme.colors.grey2};
     border: 2px solid ${(props) => props.theme.colors.grey1};
+    border-radius: 50px;
     outline: none;
     color: ${(props) => props.theme.colors.text};
-    font-weight: 300;
-    font-family: ${(props) => props.theme.fonts.primary};
+    font-weight: 400;
     font-size: 16px;
     width: 100%;
     &::placeholder {
-      color: ${(props) => props.theme.colors.text};
-      font-weight: 300;
+      color: ${(props) => props.theme.colors.grey3};
+      font-weight: 400;
     }
   }
   button {
-    width: 46px;
-    height: 46px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    border-radius: 46px;
-    border: none;
-    background-color: blue;
+    width: 50px;
+    height: 50px;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 50px;
+    border: none;
+    background-color: #FB6664;
     align-items: center;
     justify-content: center;
     cursor: pointer;

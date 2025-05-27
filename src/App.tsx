@@ -37,7 +37,7 @@ export default function App() {
         <Main>
           <AddTodo onSubmit={onSubmit} />
           <List title="Todo" items={items} />
-          <List title="Done" items={completedItems} />
+          <List title="Completed" items={completedItems} />
         </Main>
       </Layout>
     </div>
