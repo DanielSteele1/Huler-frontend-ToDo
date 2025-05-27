@@ -1,0 +1,8 @@
+<svg id="Handle" xmlns="http://www.w3.org/2000/svg" width="10" height="16" viewBox="0 0 10 16">
+  <circle id="Ellipse_1" data-name="Ellipse 1" cx="2" cy="2" r="2" fill="#747474"/>
+  <circle id="Ellipse_4" data-name="Ellipse 4" cx="2" cy="2" r="2" transform="translate(0 6)" fill="#747474"/>
+  <circle id="Ellipse_6" data-name="Ellipse 6" cx="2" cy="2" r="2" transform="translate(0 12)" fill="#747474"/>
+  <circle id="Ellipse_2" data-name="Ellipse 2" cx="2" cy="2" r="2" transform="translate(6)" fill="#747474"/>
+  <circle id="Ellipse_3" data-name="Ellipse 3" cx="2" cy="2" r="2" transform="translate(6 6)" fill="#747474"/>
+  <circle id="Ellipse_5" data-name="Ellipse 5" cx="2" cy="2" r="2" transform="translate(6 12)" fill="#747474"/>
+</svg>
