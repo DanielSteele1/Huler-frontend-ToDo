@@ -6,12 +6,14 @@ interface AddTodoProps {
   onSubmit: (name: string) => void;
 }
 
+
 const AddTodo = ({ className, onSubmit }: AddTodoProps) => {
   const [name, setName] = useState('');
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     onSubmit(name);
+    setName('');
   };
 
   return (
@@ -22,6 +24,7 @@ const AddTodo = ({ className, onSubmit }: AddTodoProps) => {
         }}
       >
         <input
+          value={name}
           placeholder="Enter new Todo..."
           onChange={(e) => setName(e.target.value)}
         />
@@ -35,7 +38,7 @@ const StyledAddTodo = styled(AddTodo)`
   width: 100%;
   display: block;
   padding: 0;
-  margin-bottom: 47px;
+  margin-bottom: 10px;
   z-index: ${(props) => props.theme.zLayers.overlay};
   form {
     overflow: hidden;
@@ -84,6 +87,7 @@ const StyledAddTodo = styled(AddTodo)`
       height: 20px;
     }
   }
+
 `;
 
 export default StyledAddTodo;

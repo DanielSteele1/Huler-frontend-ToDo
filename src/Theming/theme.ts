@@ -1,6 +1,6 @@
 const theme = {
   fonts: {
-    primary: "Poppins"
+    primary: "Poppins, sans-serif",
   },
   colors: {
     primary: "#FB6664",

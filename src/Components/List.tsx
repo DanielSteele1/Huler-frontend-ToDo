@@ -1,11 +1,16 @@
 import styled from "styled-components";
+import StyledAddTodo from "./AddTodo";
+import { useState } from "react";
 import Todo from "./Todo";
 import { Item } from '../types';
+
 
 interface ListProps {
   className?: string;
   title: string;
   items: Item[];
+  
+
 }
 
 const List = ({ className, title, items }: ListProps) => {
@@ -14,7 +19,7 @@ const List = ({ className, title, items }: ListProps) => {
       <h2>{title}</h2>
       <ul>
         {items.map((item) => {
-          return <Todo name={item.name} />;
+          return <Todo name={item.name} key={item.id}/>;
         })}
       </ul>
     </div>
@@ -29,10 +34,10 @@ const StyledList = styled(List)`
   padding: 30px 0;
   h2 {
     font-weight: 700;
-    margin-bottom: 20px;
     color: ${(props) => props.theme.colors.grey3};
     font-size: 24px;
   }
+    
 `;
 
 export default StyledList;

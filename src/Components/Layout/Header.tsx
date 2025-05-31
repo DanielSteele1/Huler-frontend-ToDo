@@ -14,7 +14,7 @@ const Header = ({ className }: HeaderProps) => {
 
 const StyledHeader = styled(Header)`
   display: block;
-  padding: 48px 48px 0 48px;
+  padding: 20px 20px 0 48px;
 
   > div {
     width: 100%;
@@ -23,7 +23,7 @@ const StyledHeader = styled(Header)`
   }
 
   @media (max-width: ${(props) => props.theme.breakpoints.small}) {
-    padding: 200px 20px 0 20px;
+    padding: 20px 50px 0 20px;
   }
 `;
 

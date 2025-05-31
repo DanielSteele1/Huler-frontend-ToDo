@@ -21,6 +21,7 @@ const Layout = ({ children }: LayoutProps) => {
       -moz-osx-font-smoothing: grayscale;
       box-sizing: border-box;
     }
+
   `;
 
   return (

@@ -6,6 +6,11 @@ import AddTodo from "./Components/AddTodo";
 import { Item } from "./types";
 import Main from "./Components/Layout/Main";
 
+// Dnd-Kit imports
+import { DndContext } from "@dnd-kit/core";
+import Draggable from "./Draggable.jsx";
+import Droppable from "./Droppable.jsx";
+
 const initialItems: Item[] = [
   { id: 1, name: "Write documentation for new website" },
   { id: 2, name: "Speak to Dave about code review process" },
@@ -19,25 +24,62 @@ const initialCompletedItems: Item[] = [
 ];
 
 export default function App() {
-  const [items, setItems] = useState(initialItems);
+
+
+  // saved items into localStorage - meaning it wont disappear on refresh
+  const [items, setItems] = useState(() => {
+
+    const savedItems = localStorage.getItem('items');
+    return savedItems ? JSON.parse(savedItems) : initialItems;
+
+  });
+
   const [completedItems] = useState(initialCompletedItems);
 
   const onSubmit = (name: string) => {
-    setItems([...items, { id: 1, name }]);
+    setItems([...items, { id: Date.now() , name }]);    // changed the ID from '1' for every item to a unique timestamp.
   };
 
   useEffect(() => {
-    setItems(initialItems);
+    localStorage.setItem('items', JSON.stringify(items));
   }, [items]);
+
+  const toggleItemCompletion = (id: number) => {
+
+    setItems((prev: Item[]) => 
+      prev.map((item: Item) =>
+      item.id === id ? { ...item, isCompleted: !item.isCompleted } : item
+    )
+    );
+  }
+
+
+  // Removed useEffect - this was stopping tasks from being added
+
+  // useEffect(() => {
+  //   setItems(initialItems);
+  // }, [items]);
 
   return (
     <div className="App">
       <Layout>
         <Header />
         <Main>
-          <AddTodo onSubmit={onSubmit} />
-          <List title="Todo" items={items} />
-          <List title="Completed" items={completedItems} />
+          <DndContext>
+
+            <AddTodo onSubmit={onSubmit} />
+
+            <Droppable>
+
+              <Draggable> 
+              <List title="Todo" items={items} />
+              </Draggable>
+
+              <List title="Completed" items={completedItems} />
+
+            </Droppable>
+
+          </DndContext>
         </Main>
       </Layout>
     </div>
