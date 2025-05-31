@@ -9,17 +9,22 @@ interface ListProps {
   className?: string;
   title: string;
   items: Item[];
-  
+  onToggleItemCompleted?: (id: number) => void;  // prop for toggling item completion
 
 }
 
-const List = ({ className, title, items }: ListProps) => {
+const List = ({ className, title, items, onToggleItemCompleted}: ListProps) => {
   return (
     <div className={className}>
       <h2>{title}</h2>
       <ul>
         {items.map((item) => {
-          return <Todo name={item.name} key={item.id}/>;
+          return <Todo 
+          name={item.name} 
+          key={item.id} 
+          isCompleted={item.isCompleted ?? false}
+          onToggleItemCompleted={() => onToggleItemCompleted?.(item.id)}
+          />;
         })}
       </ul>
     </div>

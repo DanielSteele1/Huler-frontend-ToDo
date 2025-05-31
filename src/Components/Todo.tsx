@@ -1,49 +1,60 @@
 import { styled } from "styled-components";
 import Handle from "./Handle";
-import Check from "./Check";
+import StyledCheck from "./Check";
 
 interface TodoProps {
   className?: string;
   name: string;
-  subtaskText: string;
+  //subtaskText: string;
+  isCompleted: boolean;
+  onToggleItemCompleted: () => void;  // prop for toggling item completion
 
 }
 
-const Todo = ({ className, name }: TodoProps) => {
+const Todo = ({ className, name, isCompleted, onToggleItemCompleted }: TodoProps) => {
   return (
     <li className={className}>
       <Handle />
 
       <div className="todo-name-container" style={{ display: 'flex' }}>
 
-        {name}
+        <span
+          className="heading-text"
+          style={{
+            textDecoration: isCompleted ? 'line-through' : 'none'   // if completed task, cross out the heading 
+          }}
+        >
+          {name}
+        </span>
 
-        <button className="add-subtask">
+        {/* <button className="add-subtask">
           <div className="subtask-icon">
           </div>
           Add Subtask
         </button>
 
-        <SubTask/>
+        <SubTask/> */}
 
       </div>
-      <Check />
+      <StyledCheck
+        isCompleted={isCompleted}
+        onToggleItemCompleted={onToggleItemCompleted} />
 
     </li>
   );
 };
 
- const SubTask = ({ subtaskText }: TodoProps) => {
-   return (
-     <div className="subtask-container"> 
+//  const SubTask = ({ subtaskText }: TodoProps) => {
+//    return (
+//      <div className="subtask-container"> 
 
-      <div className="subtask-text"> {subtaskText} </div>
+//       <div className="subtask-text"> {subtaskText} </div>
 
-      <Check />
+//       <Check />
 
-    </div>
-   );
- };
+//     </div>
+//    );
+//  };
 
 
 const StyledTodo = styled(Todo)`
@@ -56,7 +67,6 @@ const StyledTodo = styled(Todo)`
   color: ${(props) => props.theme.colors.text};
   font-family: ${(props) => props.theme.fonts.primary};
   font-weight: 700;
-  font-style: bold;
   font-size: 16px;
   padding: 20px;
   margin: 15px 0;
@@ -103,13 +113,11 @@ const StyledTodo = styled(Todo)`
 
   }
 
-
   div.subtask-container {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-
 
   div.subtext-text {
     
@@ -120,18 +128,5 @@ const StyledTodo = styled(Todo)`
  }
 
 `;
-
-// const StyledSubTask = styled(subtask)`
-
-//   color: ${(props) => props.theme.colors.text};
-//   font-weight: 400;
-//   font-size: 14px;
-//   margin-left: 10px;
-
-
-
-// `;
-
-
 
 export default StyledTodo;

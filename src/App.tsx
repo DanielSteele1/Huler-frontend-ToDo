@@ -26,7 +26,7 @@ const initialCompletedItems: Item[] = [
 export default function App() {
 
 
-  // saved items into localStorage - meaning it wont disappear on refresh
+  // saved items into localStorage - meaning items wont disappear on refresh
   const [items, setItems] = useState(() => {
 
     const savedItems = localStorage.getItem('items');
@@ -37,22 +37,22 @@ export default function App() {
   const [completedItems] = useState(initialCompletedItems);
 
   const onSubmit = (name: string) => {
-    setItems([...items, { id: Date.now() , name }]);    // changed the ID from '1' for every item to a unique timestamp.
+    setItems([...items, { id: Date.now(), name }]);    // changed the ID from '1' for every item to a unique timestamp.
   };
 
   useEffect(() => {
     localStorage.setItem('items', JSON.stringify(items));
   }, [items]);
 
-  const toggleItemCompletion = (id: number) => {
+  // toggles if an item is completed or not 
+  const toggleItemCompleted = (id: number) => {
 
-    setItems((prev: Item[]) => 
+    setItems((prev: Item[]) =>
       prev.map((item: Item) =>
-      item.id === id ? { ...item, isCompleted: !item.isCompleted } : item
-    )
+        item.id === id ? { ...item, isCompleted: !item.isCompleted } : item
+      )
     );
   }
-
 
   // Removed useEffect - this was stopping tasks from being added
 
@@ -71,11 +71,11 @@ export default function App() {
 
             <Droppable>
 
-              <Draggable> 
-              <List title="Todo" items={items} />
+              <Draggable>
+                <List title="Todo" items={items} onToggleItemCompleted={toggleItemCompleted}/>
               </Draggable>
 
-              <List title="Completed" items={completedItems} />
+              <List title="Completed" items={completedItems} onToggleItemCompleted={toggleItemCompleted} />
 
             </Droppable>
 

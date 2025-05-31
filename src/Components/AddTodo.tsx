@@ -6,12 +6,12 @@ interface AddTodoProps {
   onSubmit: (name: string) => void;
 }
 
-
 const AddTodo = ({ className, onSubmit }: AddTodoProps) => {
   const [name, setName] = useState('');
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    if (!name.trim()) return;  // this prevents the user from adding an empty todo by not allowing an empty name 
     onSubmit(name);
     setName('');
   };

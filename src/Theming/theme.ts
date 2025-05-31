@@ -8,7 +8,7 @@ const theme = {
     grey2: "#1C1B22",
     grey3: "#807E84",
     grey4: "#101014",
-    text: "#ffffff"
+    text: "#f2f2f2"
   },
   zLayers: {
     hidden: -999,
