@@ -1,33 +1,43 @@
 import styled from "styled-components";
-import StyledAddTodo from "./AddTodo";
-import { useState } from "react";
 import Todo from "./Todo";
+//import Completed from "./Completed";
 import { Item } from '../types';
 
+import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import Droppable from "../Droppable";
 
 interface ListProps {
   className?: string;
   title: string;
   items: Item[];
+  id: string;
   onToggleItemCompleted?: (id: number) => void;  // prop for toggling item completion
 
 }
 
-const List = ({ className, title, items, onToggleItemCompleted}: ListProps) => {
+const List = ({ id, className, title, items, onToggleItemCompleted }: ListProps) => {
   return (
-    <div className={className}>
-      <h2>{title}</h2>
-      <ul>
-        {items.map((item) => {
-          return <Todo 
-          name={item.name} 
-          key={item.id} 
-          isCompleted={item.isCompleted ?? false}
-          onToggleItemCompleted={() => onToggleItemCompleted?.(item.id)}
-          />;
-        })}
-      </ul>
-    </div>
+    <>
+      <Droppable id={id}>
+        <div className={className}>
+          <h2>{title}</h2>            <SortableContext items={items.map(item => item.id)} strategy={verticalListSortingStrategy}>
+            <ul>
+              {items.map((item) => (
+                <Todo
+                  id={item.id}
+                  name={item.name}
+                  key={item.id}
+                  isCompleted={item.isCompleted ?? false}
+                  onToggleItemCompleted={() => onToggleItemCompleted?.(item.id)}
+                />
+                
+              ))}
+            </ul>
+          </SortableContext>
+        </div>
+      </Droppable>
+
+    </>
   );
 };
 

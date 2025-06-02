@@ -1,29 +1,31 @@
-import { useDraggable } from '@dnd-kit/core';
+
+import { useDroppable } from '@dnd-kit/core';
+interface DroppableProps {
+
+    id: string;
+    children: React.ReactNode;
+}
 
 
+function Droppable({ id, children }: DroppableProps) {
+    const { setNodeRef } = useDroppable({ id});
 
-// quick ones for tomorrow 
+    const style: React.CSSProperties = {
+        display: 'flex',
+        flexDirection: 'column',
+        minWidth: '100%',
+        padding: '10px'
 
-// add in the strikethrough for completed items
-// add the ability to drag and drop items between lists
+    };
 
-// for sunday :
-
-// 
+    return (
+        <div ref={setNodeRef} style={style}>
+            {children}
+        </div>
+    );
+}
 
 // finish drag and drop TODAY
 // now you need to work on the subtasks
-
-
-function Droppable({ id, children }) {
-
-    return (
-
-
-        <div {...useDraggable({ id })}>
-            {children}
-        </div>
-    )
-}
 
 export default Droppable;

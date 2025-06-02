@@ -4,7 +4,7 @@ import StyledCheck from "./Check";
 
 import { useDraggable } from "@dnd-kit/core";
 
-interface TodoProps {
+interface CompletedProps {
   className?: string;
   name: string;
   id: number;
@@ -14,7 +14,8 @@ interface TodoProps {
 
 }
 
-const Todo = ({ className, name, isCompleted, onToggleItemCompleted, id }: TodoProps) => {
+const Completed = ({ className, name, isCompleted, onToggleItemCompleted, id }: CompletedProps) => {
+
 
   // added Draggable.tsx code directly into Todo.tsx - this is becuase I needed to pass attributes and listeners to the Handle, 
   // but they were in Draggable.tsx 
@@ -33,7 +34,7 @@ const Todo = ({ className, name, isCompleted, onToggleItemCompleted, id }: TodoP
       <li ref={setNodeRef} style={style} className={className}>
         <Handle {...listeners} {...attributes} />
 
-        <div className="todo-name-container" style={{ display: 'flex' }}>
+        <div className="completed-name-container" style={{ display: 'flex' }}>
 
           <span
             className="heading-text"
@@ -75,7 +76,7 @@ const Todo = ({ className, name, isCompleted, onToggleItemCompleted, id }: TodoP
 //  };
 
 
-const StyledTodo = styled(Todo)`
+const StyledCompleted = styled(Completed)`
   display: flex;
   width: 100%;
   height: fit-content;
@@ -90,7 +91,7 @@ const StyledTodo = styled(Todo)`
   margin: 15px 0;
   border-radius: 15px;
 
-  div.todo-name-container {
+  div.completed-name-container {
     display: flex;
     width: 100%;
     height: fit-content;
@@ -146,4 +147,4 @@ const StyledTodo = styled(Todo)`
 
 `;
 
-export default StyledTodo;
+export default StyledCompleted;

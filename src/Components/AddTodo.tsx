@@ -40,6 +40,21 @@ const StyledAddTodo = styled(AddTodo)`
   padding: 0;
   margin-bottom: 10px;
   z-index: ${(props) => props.theme.zLayers.overlay};
+
+     @media (${(props) => props.theme.breakpoints.small}) {
+        
+    padding: 50px;
+
+
+    }
+
+    @media (${(props) => props.theme.breakpoints.mobile}) {
+        
+    padding: 10px;
+
+
+    }
+
   form {
     overflow: hidden;
     display: flex;
@@ -50,6 +65,7 @@ const StyledAddTodo = styled(AddTodo)`
     align-items: center;
     justify-content: center;
     height: 50px;
+    width: 100%;
     padding: 20px;
     margin: 10px;
     background-color: ${(props) => props.theme.colors.grey2};
@@ -59,11 +75,12 @@ const StyledAddTodo = styled(AddTodo)`
     color: ${(props) => props.theme.colors.text};
     font-weight: 400;
     font-size: 16px;
-    width: 100%;
     &::placeholder {
       color: ${(props) => props.theme.colors.grey3};
       font-weight: 400;
     }
+
+
   }
   button {
     width: 50px;

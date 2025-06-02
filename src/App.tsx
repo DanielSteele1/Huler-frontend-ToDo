@@ -6,10 +6,10 @@ import AddTodo from "./Components/AddTodo";
 import { Item } from "./types";
 import Main from "./Components/Layout/Main";
 
-// Dnd-Kit imports
+// Dnd-kit
+import { arrayMove } from "@dnd-kit/sortable";
 import { DndContext } from "@dnd-kit/core";
-import Draggable from "./Draggable.jsx";
-import Droppable from "./Droppable.jsx";
+import { DragEndEvent } from "@dnd-kit/core";
 
 const initialItems: Item[] = [
   { id: 1, name: "Write documentation for new website" },
@@ -25,7 +25,6 @@ const initialCompletedItems: Item[] = [
 
 export default function App() {
 
-
   // saved items into localStorage - meaning items wont disappear on refresh
   const [items, setItems] = useState(() => {
 
@@ -37,12 +36,14 @@ export default function App() {
   const [completedItems] = useState(initialCompletedItems);
 
   const onSubmit = (name: string) => {
-    setItems([...items, { id: Date.now(), name }]);    // changed the ID from '1' for every item to a unique timestamp.
+    setItems([...items, { id: Date.now(), name }]);
+    // changed the ID from '1' for every user generated item to a unique timestamp.
   };
 
   useEffect(() => {
     localStorage.setItem('items', JSON.stringify(items));
   }, [items]);
+
 
   // toggles if an item is completed or not 
   const toggleItemCompleted = (id: number) => {
@@ -54,6 +55,25 @@ export default function App() {
     );
   }
 
+   // handle drag end - This is what lets the user drop a task in any given place.
+
+   // -- BUGS -- 
+   //- right now - when you drag an item in the todo array it will also drag the corrosponding item in the completed array.
+   //- the dragged item will also not drop where you expect it to - it instead defaults to the bottom of the list.
+   //- this also only applies to the todo list as it takes the items array - the completed list takes completedItems
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+
+    if (!over) return;
+
+    console.log(active, over);
+
+    const oldIndex = items.findIndex(item => item.id === active.id);
+    const newIndex = items.findIndex((item) => item.id === over.id);
+    setItems(items => arrayMove(items, oldIndex, newIndex));
+
+  };
   // Removed useEffect - this was stopping tasks from being added
 
   // useEffect(() => {
@@ -64,23 +84,21 @@ export default function App() {
     <div className="App">
       <Layout>
         <Header />
-        <Main>
-          <DndContext>
-
+        <DndContext onDragEnd={handleDragEnd}>
+          <Main>
             <AddTodo onSubmit={onSubmit} />
-
-            <Droppable>
-
-              <Draggable>
-                <List title="Todo" items={items} onToggleItemCompleted={toggleItemCompleted}/>
-              </Draggable>
-
-              <List title="Completed" items={completedItems} onToggleItemCompleted={toggleItemCompleted} />
-
-            </Droppable>
-
-          </DndContext>
-        </Main>
+            <List
+              id="todo-list"
+              title="Todo"
+              items={items}
+              onToggleItemCompleted={toggleItemCompleted} />
+            <List
+              id="completed-list"
+              title="Completed"
+              items={completedItems}
+              onToggleItemCompleted={toggleItemCompleted} />
+          </Main>
+        </DndContext>
       </Layout>
     </div>
   );
