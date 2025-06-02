@@ -93,7 +93,7 @@ export default function App() {
           <Main>
             <AddTodo onSubmit={onSubmit} />
             <List
-              id={items}
+              id="todo-list"
               title="Todo"
               items={items}
               onToggleItemCompleted={toggleItemCompleted} />
