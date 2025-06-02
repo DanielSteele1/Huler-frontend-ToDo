@@ -2,8 +2,6 @@
 
 # Front End Developer Technical Challenge - Daniel Steele's Submission
 
-### **Progress**
-
 ### **Tasks Completed:**
 
 - Add a new task
@@ -20,5 +18,7 @@
 
 - subtasks - basic structure was attempted however put on hold due to drag and drop taking more time to implement than expected.
 ### **To run**
+first - run npm install - I've installed DnD-kit for example.
+then, once inside the frontend-challenge-code folder, type:
 
-type npm run dev once inside the frontend-challenge-code folder
+npm run dev
