@@ -2,10 +2,9 @@
 import { useDroppable } from '@dnd-kit/core';
 interface DroppableProps {
 
-    id: string;
+    id: number;
     children: React.ReactNode;
 }
-
 
 function Droppable({ id, children }: DroppableProps) {
     const { setNodeRef } = useDroppable({ id});
@@ -24,8 +23,5 @@ function Droppable({ id, children }: DroppableProps) {
         </div>
     );
 }
-
-// finish drag and drop TODAY
-// now you need to work on the subtasks
 
 export default Droppable;

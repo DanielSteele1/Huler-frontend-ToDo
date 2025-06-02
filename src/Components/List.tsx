@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Todo from "./Todo";
-//import Completed from "./Completed";
 import { Item } from '../types';
 
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
@@ -10,10 +9,11 @@ interface ListProps {
   className?: string;
   title: string;
   items: Item[];
-  id: string;
+  id: number;
   onToggleItemCompleted?: (id: number) => void;  // prop for toggling item completion
 
 }
+
 
 const List = ({ id, className, title, items, onToggleItemCompleted }: ListProps) => {
   return (

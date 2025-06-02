@@ -62,6 +62,8 @@ const Todo = ({ className, name, isCompleted, onToggleItemCompleted, id }: TodoP
   );
 };
 
+//subtasks
+
 //  const SubTask = ({ subtaskText }: TodoProps) => {
 //    return (
 //      <div className="subtask-container"> 

@@ -3,7 +3,7 @@ import {useSortable} from '@dnd-kit/sortable';
 import {CSS} from '@dnd-kit/utilities';
 
 interface SortableItemProps {
-  id: string;
+  id: number;
   children: (listeners: any, attributes: any) => React.ReactNode;
 }
 
