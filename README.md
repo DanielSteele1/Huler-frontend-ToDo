@@ -4,7 +4,7 @@
 
 ### **Tasks Completed:**
 
-- Add a new task
+- Add a new task. I also made sure users cannot add empty tasks with no text.
 - Saved task into localStorage so when the user reloads the app, thier tasks save.
 - Align app with design as accurately as possible
 - Mark a todo as completed by checking it - task text also gets crossed out.
